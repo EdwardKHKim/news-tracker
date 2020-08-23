@@ -7,10 +7,37 @@
 //
 
 import SwiftUI
+import SwiftyJSON
+import SDWebImageSwiftUI
+import WebKit
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        TabView {
+            TechnologyView()
+                .tabItem {
+                    Image("technology").renderingMode(.template)
+                    Text("Technology")
+            }
+            
+            ScienceView()
+                .tabItem {
+                    Image("science").renderingMode(.template)
+                    Text("Science")
+            }
+            
+            BusinessView()
+                .tabItem {
+                    Image("business").renderingMode(.template)
+                    Text("Business")
+            }
+            
+            HealthView()
+                .tabItem {
+                    Image("health").renderingMode(.template)
+                    Text("Health")
+            }
+        }
     }
 }
 

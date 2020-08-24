@@ -21,6 +21,7 @@
 		E510584A24F2C34D00427E60 /* TechnologyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510584924F2C34D00427E60 /* TechnologyView.swift */; };
 		E510584C24F2C35E00427E60 /* HealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510584B24F2C35E00427E60 /* HealthView.swift */; };
 		E510584E24F2C36A00427E60 /* ScienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510584D24F2C36A00427E60 /* ScienceView.swift */; };
+		E510585224F3E75400427E60 /* CountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E510585124F3E75400427E60 /* CountryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		E510584924F2C34D00427E60 /* TechnologyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TechnologyView.swift; sourceTree = "<group>"; };
 		E510584B24F2C35E00427E60 /* HealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthView.swift; sourceTree = "<group>"; };
 		E510584D24F2C36A00427E60 /* ScienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScienceView.swift; sourceTree = "<group>"; };
+		E510585124F3E75400427E60 /* CountryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				E510584924F2C34D00427E60 /* TechnologyView.swift */,
 				E510584B24F2C35E00427E60 /* HealthView.swift */,
 				E510584D24F2C36A00427E60 /* ScienceView.swift */,
+				E510585124F3E75400427E60 /* CountryView.swift */,
 			);
 			path = newswatch;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				E510584C24F2C35E00427E60 /* HealthView.swift in Sources */,
 				E510584E24F2C36A00427E60 /* ScienceView.swift in Sources */,
 				E510584824F2C34200427E60 /* BusinessView.swift in Sources */,
+				E510585224F3E75400427E60 /* CountryView.swift in Sources */,
 				E510584A24F2C34D00427E60 /* TechnologyView.swift in Sources */,
 				E510581024F2683900427E60 /* AppDelegate.swift in Sources */,
 				E510581224F2683900427E60 /* SceneDelegate.swift in Sources */,

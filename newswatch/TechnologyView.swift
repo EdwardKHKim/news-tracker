@@ -12,29 +12,44 @@ import SDWebImageSwiftUI
 import WebKit
 
 struct TechnologyView: View {
+
     init() {
         UITableView.appearance().separatorStyle = .none
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.red]
     }
     
-   @ObservedObject var list = getTechnologyData()
+    @State var showCountryView = false
+    
+    @ObservedObject var list = getTechnologyData()
     var body: some View {
         NavigationView {
             List(list.data) {i in
-                
                 NavigationLink(destination:
                     technologyWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
                     ) {
                     HStack(spacing: 15) {
                         VStack(alignment: .leading, spacing: 10) {
                             if i.urlToImage != "" {
-                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 225).cornerRadius(10)
+                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 235).cornerRadius(10)
                             }
                             Text(i.title).fontWeight(.heavy)
                             Text(i.description).lineLimit(2)
                         }
-                    }.padding(.vertical, 15)
+                    }
+                    .padding(.vertical, 15)
                 }
-                }.navigationBarTitle("Technology News")
+            }
+            .navigationBarTitle("Technology")
+            .navigationBarItems(trailing: Button(action: {
+                print("Country List")
+                self.showCountryView = true
+            }) {
+                Image("country")
+            })
+        }
+        .sheet(isPresented: $showCountryView) {
+            CountryView(showCountryView: self.$showCountryView)
         }
     }
 }
@@ -56,8 +71,10 @@ struct technologyDataType: Identifiable {
 class getTechnologyData: ObservableObject {
     @Published var data = [technologyDataType]()
     
+    let countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx", "my", "ng", "nl", "no", "nz", "ph", "pl", "pt", "ro", "rs", "ru", "sa", "se", "sg", "si", "sk", "th", "tr", "tw", "ua", "us", "ve", "za"]
+    
     init() {
-        let source = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
+        let source = "https://newsapi.org/v2/top-headlines?country=ca&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
         
         let url = URL(string: source)!
         

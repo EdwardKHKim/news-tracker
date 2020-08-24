@@ -13,7 +13,9 @@ import WebKit
 
 struct ContentView: View {
     var body: some View {
+        
         TabView {
+            
             TechnologyView()
                 .tabItem {
                     Image("technology").renderingMode(.template)
@@ -37,7 +39,9 @@ struct ContentView: View {
                     Image("health").renderingMode(.template)
                     Text("Health")
             }
-        }
+            
+
+        }.accentColor(.red)
     }
 }
 

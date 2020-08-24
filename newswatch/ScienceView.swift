@@ -13,8 +13,10 @@ import WebKit
 
 struct ScienceView: View {
     init() {
-        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().separatorStyle = .none 
     }
+    
+    @State var showCountryView = false
     
     @ObservedObject var list = getScienceData()
     var body: some View {
@@ -27,14 +29,25 @@ struct ScienceView: View {
                     HStack(spacing: 15) {
                         VStack(alignment: .leading, spacing: 10) {
                             if i.urlToImage != "" {
-                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 225).cornerRadius(10)
+                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 235).cornerRadius(10)
                             }
                             Text(i.title).fontWeight(.heavy)
                             Text(i.description).lineLimit(2)
                         }
-                    }.padding(.vertical, 15)
+                    }
+                    .padding(.vertical, 15)
                 }
-                }.navigationBarTitle("Science News")
+            }
+            .navigationBarTitle("Science")
+            .navigationBarItems(trailing: Button(action: {
+                print("Country List")
+                self.showCountryView = true
+            }) {
+                Image("country")
+            })
+        }
+        .sheet(isPresented: $showCountryView) {
+            CountryView(showCountryView: self.$showCountryView)
         }
     }
 }
@@ -57,7 +70,7 @@ class getScienceData: ObservableObject {
     @Published var data = [scienceDataType]()
     
     init() {
-        let source = "https://newsapi.org/v2/top-headlines?country=us&category=science&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
+        let source = "https://newsapi.org/v2/top-headlines?country=ca&category=science&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
         
         let url = URL(string: source)!
         

@@ -11,27 +11,30 @@ import SwiftyJSON
 import SDWebImageSwiftUI
 import WebKit
 
+
 struct TechnologyView: View {
 
     init() {
         UITableView.appearance().separatorStyle = .none
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.red]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.red]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.black]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.black]
     }
     
     @State var showCountryView = false
     
     @ObservedObject var list = getTechnologyData()
+
+    
     var body: some View {
         NavigationView {
             List(list.data) {i in
                 NavigationLink(destination:
-                    technologyWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
+                    TechnologyWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
                     ) {
                     HStack(spacing: 15) {
                         VStack(alignment: .leading, spacing: 10) {
                             if i.urlToImage != "" {
-                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 235).cornerRadius(10)
+                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 230).cornerRadius(10)
                             }
                             Text(i.title).fontWeight(.heavy)
                             Text(i.description).lineLimit(2)
@@ -41,12 +44,13 @@ struct TechnologyView: View {
                 }
             }
             .navigationBarTitle("Technology")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(
+            trailing: Button(action: {
                 print("Country List")
                 self.showCountryView = true
-            }) {
-                Image("country")
-            })
+            }, label: {
+                Image(CountryVariables.countryImage).renderingMode(.original)
+            }))
         }
         .sheet(isPresented: $showCountryView) {
             CountryView(showCountryView: self.$showCountryView)
@@ -60,7 +64,7 @@ struct TechnologyView_Previews: PreviewProvider {
     }
 }
 
-struct technologyDataType: Identifiable {
+struct TechnologyDataType: Identifiable {
     var id: String
     var title: String
     var description: String
@@ -69,12 +73,11 @@ struct technologyDataType: Identifiable {
 }
 
 class getTechnologyData: ObservableObject {
-    @Published var data = [technologyDataType]()
-    
-    let countries = ["ae", "ar", "at", "au", "be", "bg", "br", "ca", "ch", "cn", "co", "cu", "cz", "de", "eg", "fr", "gb", "gr", "hk", "hu", "id", "ie", "il", "in", "it", "jp", "kr", "lt", "lv", "ma", "mx", "my", "ng", "nl", "no", "nz", "ph", "pl", "pt", "ro", "rs", "ru", "sa", "se", "sg", "si", "sk", "th", "tr", "tw", "ua", "us", "ve", "za"]
-    
+    @Published var data = [TechnologyDataType]()
+ 
     init() {
-        let source = "https://newsapi.org/v2/top-headlines?country=ca&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
+        
+        let source = "https://newsapi.org/v2/top-headlines?country=\(CountryVariables.countryOption)&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
         
         let url = URL(string: source)!
         
@@ -97,24 +100,23 @@ class getTechnologyData: ObservableObject {
                 let id = i.1["publishedAt"].stringValue
                 
                 DispatchQueue.main.async {
-                    self.data.append(technologyDataType(id: id, title: title, description: description, url: url, urlToImage: urlToImage))
+                    self.data.append(TechnologyDataType(id: id, title: title, description: description, url: url, urlToImage: urlToImage))
                 }
             }
         }.resume()
     }
 }
 
-struct technologyWebView: UIViewRepresentable {
+struct TechnologyWebView: UIViewRepresentable {
     
     var url: String
     
-    func makeUIView(context: UIViewRepresentableContext<technologyWebView>) -> WKWebView {
+    func makeUIView(context: UIViewRepresentableContext<TechnologyWebView>) -> WKWebView {
         let view = WKWebView()
         view.load(URLRequest(url: URL(string: url)!))
         return view
     }
     
-    func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<technologyWebView>) {
-        
+    func updateUIView(_ uiView: WKWebView, context: UIViewRepresentableContext<TechnologyWebView>) {
     }
 }

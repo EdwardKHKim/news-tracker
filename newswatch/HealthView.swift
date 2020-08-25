@@ -29,7 +29,7 @@ struct HealthView: View {
                     HStack(spacing: 15) {
                         VStack(alignment: .leading, spacing: 10) {
                             if i.urlToImage != "" {
-                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 235).cornerRadius(10)
+                                WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 230).cornerRadius(10)
                             }
                             Text(i.title).fontWeight(.heavy)
                             Text(i.description).lineLimit(2)
@@ -39,15 +39,16 @@ struct HealthView: View {
                 }
             }
             .navigationBarTitle("Health")
-            .navigationBarItems(trailing: Button(action: {
+            .navigationBarItems(
+            trailing: Button(action: {
                 print("Country List")
                 self.showCountryView = true
-            }) {
-                Image("country")
-            })
-        }
-        .sheet(isPresented: $showCountryView) {
-            CountryView(showCountryView: self.$showCountryView)
+            }, label: {
+                Image(CountryVariables.countryImage).renderingMode(.original)
+            }))
+            }
+            .sheet(isPresented: $showCountryView) {
+                CountryView(showCountryView: self.$showCountryView)
         }
     }
 }
@@ -70,7 +71,7 @@ class getHealthData: ObservableObject {
     @Published var data = [healthDataType]()
     
     init() {
-        let source = "https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
+        let source = "https://newsapi.org/v2/top-headlines?country=\(CountryVariables.countryOption)&category=health&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
         
         let url = URL(string: source)!
         

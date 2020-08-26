@@ -36,8 +36,9 @@ struct CountryView: View {
                         
                         CountryVariables.countryOption = self.countryOptions[index]
                         CountryVariables.countryImage = self.countryImages[index]
+                        Source.source = "https://newsapi.org/v2/top-headlines?country=\(CountryVariables.countryOption)&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
                         
-                        print("\(self.countries[index]) image and \(CountryVariables.countryOption) selected")
+                        print("\(self.countries[index]) image, \(CountryVariables.countryOption) selected and \(Source.source)")
                         
                     }) {
                         VStack(spacing: 10) {
@@ -58,7 +59,7 @@ struct CountryView: View {
             }
             .navigationBarTitle(Text("Country List"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                print("Dismissing sheet view... and countryOptions is \(CountryVariables.countryOption)")
+                print("Dismissing sheet view... and countryOption is \(CountryVariables.countryOption)")
                 self.showCountryView = false
             }) {
                 Text("Done").bold().accentColor(.red)

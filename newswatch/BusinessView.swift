@@ -22,7 +22,6 @@ struct BusinessView: View {
     var body: some View {
         NavigationView {
             List(list.data) {i in
-                
                 NavigationLink(destination:
                     businessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
                     ) {

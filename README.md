@@ -1,3 +1,5 @@
 # news-tracker
 
-## Technology Stack
+![Demo](https://github.com/EdwardKHKim/news-tracker/news.gif)
+
+## Dependencies 

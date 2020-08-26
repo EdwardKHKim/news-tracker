@@ -38,6 +38,8 @@ struct TechnologyView: View {
     @ObservedObject var listUnitedKingdom = TechnologyDataUnitedKingdom()
     @ObservedObject var listUnitedStates = TechnologyDataUnitedStates()
     
+    let countryOptions = ["ca", "cn", "fr", "de", "in", "jp", "kr", "ch", "gb", "us"]
+    
     var body: some View {
         NavigationView {
             if CountryVariables.countryOption == "ca" {
@@ -394,7 +396,6 @@ struct TechnologyDataTypeUnitedStates: Identifiable {
     var urlToImage: String
 }
 
-//let countryOptions = ["ch", "gb",]
 class TechnologyDataCanada: ObservableObject {
     @Published var data = [TechnologyDataTypeCanada]()
     
@@ -646,43 +647,6 @@ class TechnologyDataSouthKorea: ObservableObject {
     }
 }
 
-
-class TechnologyDataUnitedStates: ObservableObject {
-    @Published var data = [TechnologyDataTypeUnitedStates]()
-    
-    init() {
-        let source = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
-        
-        let url = URL(string: source)!
-        
-        
-        let session = URLSession(configuration: .default)
-        
-        session.dataTask(with: url) {
-            (data, _, error) in
-            if error != nil {
-                print((error?.localizedDescription)!)
-                return
-            }
-            
-            let json = try! JSON(data: data!)
-            
-            for i in json["articles"] {
-                let title = i.1["title"].stringValue
-                let description = i.1["description"].stringValue
-                let url = i.1["url"].stringValue
-                let urlToImage = i.1["urlToImage"].stringValue
-                let id = i.1["publishedAt"].stringValue
-                
-                DispatchQueue.main.async {
-                    self.data.append(TechnologyDataTypeUnitedStates(id: id, title: title, description: description, url: url, urlToImage: urlToImage))
-                    
-                }
-            }
-        }.resume()
-    }
-}
-
 class TechnologyDataSwitzerland: ObservableObject {
     @Published var data = [TechnologyDataTypeSwitzerland]()
     
@@ -748,6 +712,42 @@ class TechnologyDataUnitedKingdom: ObservableObject {
                 
                 DispatchQueue.main.async {
                     self.data.append(TechnologyDataTypeUnitedKingdom(id: id, title: title, description: description, url: url, urlToImage: urlToImage))
+                    
+                }
+            }
+        }.resume()
+    }
+}
+
+class TechnologyDataUnitedStates: ObservableObject {
+    @Published var data = [TechnologyDataTypeUnitedStates]()
+    
+    init() {
+        let source = "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=b47d5df2c8294f3d81f073996c53bb4a"
+        
+        let url = URL(string: source)!
+        
+        
+        let session = URLSession(configuration: .default)
+        
+        session.dataTask(with: url) {
+            (data, _, error) in
+            if error != nil {
+                print((error?.localizedDescription)!)
+                return
+            }
+            
+            let json = try! JSON(data: data!)
+            
+            for i in json["articles"] {
+                let title = i.1["title"].stringValue
+                let description = i.1["description"].stringValue
+                let url = i.1["url"].stringValue
+                let urlToImage = i.1["urlToImage"].stringValue
+                let id = i.1["publishedAt"].stringValue
+                
+                DispatchQueue.main.async {
+                    self.data.append(TechnologyDataTypeUnitedStates(id: id, title: title, description: description, url: url, urlToImage: urlToImage))
                     
                 }
             }

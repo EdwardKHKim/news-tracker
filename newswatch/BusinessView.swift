@@ -29,7 +29,7 @@ struct BusinessView: View {
     @ObservedObject var listUnitedKingdom = BusinessDataUnitedKingdom()
     @ObservedObject var listUnitedStates = BusinessDataUnitedStates()
     
-     let countryOptions = ["ca", "cn", "fr", "de", "in", "jp", "kr", "ch", "gb", "us"]
+    let countryOptions = ["ca", "cn", "fr", "de", "in", "jp", "kr", "ch", "gb", "us"]
     
     var body: some View {
         NavigationView {
@@ -37,7 +37,7 @@ struct BusinessView: View {
                 List(listCanada.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -62,7 +62,7 @@ struct BusinessView: View {
                 List(listChina.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -87,7 +87,7 @@ struct BusinessView: View {
                 List(listFrance.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -112,7 +112,7 @@ struct BusinessView: View {
                 List(listGermany.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -137,7 +137,7 @@ struct BusinessView: View {
                 List(listIndia.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -162,7 +162,7 @@ struct BusinessView: View {
                 List(listJapan.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -187,7 +187,7 @@ struct BusinessView: View {
                 List(listSouthKorea.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -209,35 +209,35 @@ struct BusinessView: View {
                         Image(CountryVariables.countryImage).renderingMode(.original)
                     }))
             } else if CountryVariables.countryOption == "ch" {
-                 List(listSwitzerland.data) {i in
-                     NavigationLink(destination:
-                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                         ) {
-                         HStack(spacing: 15) {
-                             VStack(alignment: .leading, spacing: 10) {
-                                 if i.urlToImage != "" {
-                                     WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 230).cornerRadius(10)
-                                 }
-                                 Text(i.title).fontWeight(.heavy)
-                                 Text(i.description).lineLimit(2)
-                             }
-                         }
-                         .padding(.vertical, 15)
-                     }
-                 }
-                 .navigationBarTitle("Business")
-                 .navigationBarItems(
-                     trailing: Button(action: {
-                         print("Country List")
-                         self.showCountryView = true
-                     }, label: {
-                         Image(CountryVariables.countryImage).renderingMode(.original)
-                     }))
+                List(listSwitzerland.data) {i in
+                    NavigationLink(destination:
+                        BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
+                    ) {
+                        HStack(spacing: 15) {
+                            VStack(alignment: .leading, spacing: 10) {
+                                if i.urlToImage != "" {
+                                    WebImage(url: URL(string: i.urlToImage)!, options: .highPriority, context: nil).resizable().frame(width: 375, height: 230).cornerRadius(10)
+                                }
+                                Text(i.title).fontWeight(.heavy)
+                                Text(i.description).lineLimit(2)
+                            }
+                        }
+                        .padding(.vertical, 15)
+                    }
+                }
+                .navigationBarTitle("Business")
+                .navigationBarItems(
+                    trailing: Button(action: {
+                        print("Country List")
+                        self.showCountryView = true
+                    }, label: {
+                        Image(CountryVariables.countryImage).renderingMode(.original)
+                    }))
             } else if CountryVariables.countryOption == "gb" {
                 List(listUnitedKingdom.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {
@@ -262,7 +262,7 @@ struct BusinessView: View {
                 List(listUnitedStates.data) {i in
                     NavigationLink(destination:
                         BusinessWebView(url: i.url).navigationBarTitle("", displayMode: .inline)
-                        ) {
+                    ) {
                         HStack(spacing: 15) {
                             VStack(alignment: .leading, spacing: 10) {
                                 if i.urlToImage != "" {

@@ -14,3 +14,6 @@ New tracker is a native iOS application showing the most up to date news for tec
 - SDWebImage for image download 
 - Country selection 
 - Multiple news categories 
+
+## Note 
+If the application does not show data, it is due to reaching the maximum request for free-tier pricing in News API.

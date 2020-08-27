@@ -4,7 +4,7 @@ New tracker is a native iOS application showing the most up to date news for tec
 
 ## Demo
 
-![Demo](https://github.com/EdwardKHKim/news-tracker/blob/master/news.gif)
+![Demo](https://github.com/EdwardKHKim/news-tracker/blob/master/news-demo.gif)
 
 ## Features and Tech Stack
 - News API for news data 
